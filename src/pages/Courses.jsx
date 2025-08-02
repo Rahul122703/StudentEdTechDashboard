@@ -138,7 +138,7 @@ const Courses = () => {
         </p>
 
         {/* Search bar and filters */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6 md:sticky fixed top-[4rem] md:top-0 left-6 right-4 w-[90%] bg-white p-3 rounded-xl">
           <input
             type="text"
             placeholder="Search courses..."
@@ -165,7 +165,7 @@ const Courses = () => {
         </div>
 
         {/* Course Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-[5rem] md:mt-0">
           {filteredCourses.length > 0 ? (
             filteredCourses.map((course, index) => (
               <CourseCard key={index} course={course} />

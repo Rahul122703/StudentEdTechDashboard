@@ -37,7 +37,6 @@ const App = () => {
             />
           </Routes>
         </main>
-        /messages
       </div>
     </div>
   );
