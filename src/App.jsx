@@ -14,13 +14,13 @@ import {
 
 const App = () => {
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-blue-900">
       <Sidebar />
 
       <div className="flex flex-col flex-grow">
         <Topbar />
 
-        <main className="p-2 overflow-y-auto md:h-[42.8rem] rounded-lg">
+        <main className="overflow-y-auto md:h-[42rem] rounded-3xl">
           <Routes>
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<Dashboard />} />
