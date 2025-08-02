@@ -12,7 +12,7 @@ import {
   FaToggleOff,
 } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleSidebar } from "../redux/theme/themeSlice";
+import { toggleSidebar } from "../../redux/theme/themeSlice";
 
 const navItems = [
   { label: "Dashboard", icon: <FaHome />, route: "/dashboard" },
@@ -64,9 +64,7 @@ const SidebarDesktop = ({ sidebarToggle }) => (
           key={index}
           className={({ isActive }) =>
             `flex items-center gap-3 px-3 py-2 transition-colors rounded-tl-lg rounded-bl-lg ${
-              isActive
-                ? "bg-white text-blue-900"
-                : "text-white bg-blue-900  rounded-br-lg rounded-tr-lg"
+              isActive ? "bg-gray-50 text-blue-900" : "text-white bg-blue-900"
             }`
           }
         >

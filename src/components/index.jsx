@@ -1,22 +1,22 @@
-import Sidebar from "./Sidebar";
-import Topbar from "./Topbar";
-import Card from "./Card";
-import CardContent from "./CardContent";
-import RecentCourseRow from "./RecentCourseRow";
-import EnrolledCourseCard from "./EnrolledCourseCard";
-import UpcomingQuizCard from "./UpcomingQuizCard";
-import StudyReminderCard from "./StudyReminderCard";
-import ParentDashboard from "./ParentDashboard";
-import AttendenceStats from "./AttendenceStats";
+import Sidebar from "./Dashboard/Sidebar";
+import Topbar from "./Dashboard/Topbar";
+import RecentCourseRow from "./Dashboard/RecentCourseRow";
+import EnrolledCourseCard from "./Dashboard/EnrolledCourseCard";
+import UpcomingQuizCard from "./Dashboard/UpcomingQuizCard";
+import ParentDashboard from "./Dashboard/ParentDashboard";
+import AttendenceStats from "./Dashboard/AttendenceStats";
+import StudyReminderCard from "./Dashboard/StudyReminderCard";
+
+import CourseCard from "./Courses/CourseCard";
+
 export {
   Sidebar,
   Topbar,
-  Card,
-  CardContent,
   RecentCourseRow,
   EnrolledCourseCard,
   UpcomingQuizCard,
-  StudyReminderCard,
   ParentDashboard,
   AttendenceStats,
+  StudyReminderCard,
+  CourseCard,
 };
