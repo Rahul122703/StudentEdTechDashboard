@@ -1,12 +1,79 @@
-# React + Vite
+# Student Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Live Demo
 
-Currently, two official plugins are available:
+Try it out here: https://student-ed-tech-dashboard.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Steps to Install the Project
 
-## Expanding the ESLint configuration
+1. Clone the project
+   ```bash
+   git clone https://github.com/Rahul122703/StudentEdTechDashboard.git
+   ```
+2. Navigate into the project directory
+   ```bash
+   cd StudentEdTechDashboard
+   ```
+3. Install dependencies
+   ```bash
+   npm install
+   ```
+4. Run the development server
+   ```bash
+   npm run dev
+   ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+- ReactVite
+- Tailwind CSS
+- Redux Toolkit
+- Recharts
+- Axios
+
+## Screenshots
+
+| Desktop Preview                  | Mobile Preview                  |
+| -------------------------------- | ------------------------------- |
+| ![Desktop 1](screenshots/d1.png) | ![Mobile 1](screenshots/m1.png) |
+| ![Desktop 2](screenshots/d2.png) | ![Mobile 2](screenshots/m2.png) |
+| ![Desktop 3](screenshots/d3.png) | ![Mobile 3](screenshots/m3.png) |
+
+## Project Information
+
+This is a responsive student dashboard with the following features:
+
+1. **Home**
+
+   - Contains an overall summary of the student's data (courses completed, progress, notifications, etc.)
+
+2. **My Courses**
+
+   - View all enrolled courses
+   - Filter by status: All, Active, Enrolled, Technical
+   - Search by course title
+
+3. **Resume Tool**
+
+   - Upload a PDF resume or paste text
+   - “Enhance Resume” button shows dummy suggestions
+   - Step-by-step progress indicator (Understanding → Analyzing → Recommending → Complete)
+
+4. **Progress**
+
+   - Displays course progress cards
+   - Consistency heatmap similar to GitHub contribution graph
+
+5. **Messages**
+
+   - View messages from Admin, Instructors, Support
+   - Mark as Read, Delete Selected, Collapse/Expand, Reply
+   - Pagination for long message lists
+
+6. **Settings**
+
+   - Toggle switches to adjust dashboard preferences
+   - Example toggles: Email Notifications, Assignment Reminders, Auto Save Progress, Show Grades Publicly
+
+7. **Profile**
+   - Shows use information such as name,grade,skills.

@@ -11,10 +11,10 @@ import {
 const Profile = () => {
   const user = {
     name: "Rahul Sharma",
-    email: "rahul@example.com",
-    phone: "+91 9876543210",
+    email: "rsharma122703@gmail.com",
+    phone: "+91 1234567891",
     address: "Mumbai, Maharashtra, India",
-    dob: "2001-05-20",
+    dob: "2003-12-27",
     enrollmentNo: "BEIT2021001",
     branch: "Information Technology",
     semester: "7th",
