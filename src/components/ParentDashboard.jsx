@@ -28,11 +28,11 @@ const ParentDashboard = ({ reminders, assignmentData }) => {
         </div>
       </div>
 
-      <div className="flex-1 min-w-[300px] bg-white rounded-2xl shadow-md p-5">
+      <div className="flex-1  bg-white rounded-2xl shadow-md p-2">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">
           Assignment Submissions (This Month)
         </h2>
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer height={300}>
           <LineChart data={assignmentData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="day" />

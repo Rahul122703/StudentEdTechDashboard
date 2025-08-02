@@ -7,7 +7,7 @@ import EnrolledCourseCard from "./EnrolledCourseCard";
 import UpcomingQuizCard from "./UpcomingQuizCard";
 import StudyReminderCard from "./StudyReminderCard";
 import ParentDashboard from "./ParentDashboard";
-
+import AttendenceStats from "./AttendenceStats";
 export {
   Sidebar,
   Topbar,
@@ -18,4 +18,5 @@ export {
   UpcomingQuizCard,
   StudyReminderCard,
   ParentDashboard,
+  AttendenceStats,
 };

@@ -45,7 +45,7 @@ const ToggleButton = ({ sidebarToggle }) => {
 const SidebarDesktop = ({ sidebarToggle }) => (
   <div
     className={`hidden md:flex h-screen bg-blue-900 text-white flex-col transition-all duration-300 rounded-br-lg rounded-tr-lg ${
-      sidebarToggle ? "w-64 pl-4" : "w-20 pl-2"
+      sidebarToggle ? "w-45 pl-4" : "w-20 pl-2"
     } py-6`}
   >
     <div

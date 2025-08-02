@@ -2,7 +2,7 @@ import React from "react";
 import {
   EnrolledCourseCard,
   UpcomingQuizCard,
-  StudyReminderCard,
+  AttendenceStats,
   ParentDashboard,
 } from "../components";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
@@ -122,8 +122,7 @@ const Dashboard = () => {
                 </PieChart>
               </ResponsiveContainer>
             </div>
-
-            {/* Progress Stats */}
+            <AttendenceStats />
             <div className="w-full md:w-1/2 grid grid-cols-2 gap-4">
               {progressStats.map((item, idx) => (
                 <div
