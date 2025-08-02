@@ -20,7 +20,7 @@ const App = () => {
       <div className="flex flex-col flex-grow">
         <Topbar />
 
-        <main className="p-4">
+        <main className="p-2 overflow-y-auto md:h-[42.8rem] rounded-lg">
           <Routes>
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<Dashboard />} />

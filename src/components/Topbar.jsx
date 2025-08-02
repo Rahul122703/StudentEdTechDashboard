@@ -6,17 +6,14 @@ const Topbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
-    <div className="w-full bg-white shadow px-4 py-3 flex justify-between items-center">
-      <div className="text-xl font-bold text-blue-600">RahulPortal</div>
+    <div className="w-full bg-white shadow px-4 py-3 flex justify-between items-center sticky top-0">
+      <div className="text-xl font-bold text-blue-600">EdTech</div>
 
-      {/* Right: Notification + User Info */}
       <div className="flex items-center gap-4 relative">
-        {/* Notifications */}
         <button className="text-gray-600 hover:text-blue-600 transition">
           <FaBell size={20} />
         </button>
 
-        {/* User Info + Dropdown */}
         <div
           className="flex items-center gap-1 cursor-pointer relative group"
           onClick={() => setDropdownOpen((prev) => !prev)}
@@ -29,7 +26,6 @@ const Topbar = () => {
           </span>
           <IoMdArrowDropdown className="text-gray-600" />
 
-          {/* Dropdown Menu */}
           {dropdownOpen && (
             <div className="absolute right-0 top-10 w-40 bg-white border rounded-lg shadow-md z-50">
               <ul className="flex flex-col">

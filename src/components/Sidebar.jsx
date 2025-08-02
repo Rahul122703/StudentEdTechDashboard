@@ -14,7 +14,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../redux/theme/themeSlice";
 
-// Common nav items (excluding toggle for mobile)
 const navItems = [
   { label: "Dashboard", icon: <FaHome />, route: "/dashboard" },
   { label: "My Courses", icon: <FaBook />, route: "/courses" },
@@ -25,7 +24,6 @@ const navItems = [
   { label: "Logout", icon: <FaSignOutAlt />, route: "/logout" },
 ];
 
-// Toggle Sidebar Button (only desktop)
 const ToggleButton = ({ sidebarToggle }) => {
   const dispatch = useDispatch();
 
@@ -44,10 +42,9 @@ const ToggleButton = ({ sidebarToggle }) => {
   );
 };
 
-// Desktop Sidebar
 const SidebarDesktop = ({ sidebarToggle }) => (
   <div
-    className={`hidden md:flex h-screen bg-blue-900 text-white flex-col transition-all duration-300 ${
+    className={`hidden md:flex h-screen bg-blue-900 text-white flex-col transition-all duration-300 rounded-br-lg rounded-tr-lg ${
       sidebarToggle ? "w-64 px-4" : "w-20 px-2"
     } py-6`}
   >
