@@ -14,7 +14,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../redux/theme/themeSlice";
 
-// Common nav items (excluding toggle for mobile)
 const navItems = [
   { label: "Dashboard", icon: <FaHome />, route: "/dashboard" },
   { label: "My Courses", icon: <FaBook />, route: "/courses" },
@@ -25,7 +24,6 @@ const navItems = [
   { label: "Logout", icon: <FaSignOutAlt />, route: "/logout" },
 ];
 
-// Toggle Sidebar Button (only desktop)
 const ToggleButton = ({ sidebarToggle }) => {
   const dispatch = useDispatch();
 
@@ -44,7 +42,6 @@ const ToggleButton = ({ sidebarToggle }) => {
   );
 };
 
-// Desktop Sidebar
 const SidebarDesktop = ({ sidebarToggle }) => (
   <div
     className={`hidden md:flex h-screen bg-blue-900 text-white flex-col transition-all duration-300 ${
@@ -83,8 +80,9 @@ const SidebarDesktop = ({ sidebarToggle }) => (
   </div>
 );
 
+// Mobile Bottom Navigation
 const BottomNavMobile = () => (
-  <div className="fixed bottom-0 left-0 w-full bg-blue-900 text-white flex justify-around items-center py-2 px-1 md:hidden z-50 border-t border-blue-700 overflow-auto">
+  <div className="fixed bottom-0 left-0 w-full bg-blue-900 text-white flex justify-around items-center py-2 px-1 md:hidden z-50 border-t border-blue-700">
     {navItems.map((item, index) => (
       <NavLink
         to={item.route}
@@ -96,11 +94,13 @@ const BottomNavMobile = () => (
         }
       >
         <span className="text-xl">{item.icon}</span>
+        <span className="text-[10px] leading-none">{item.label}</span>
       </NavLink>
     ))}
   </div>
 );
 
+// Final Combined Component
 const Sidebar = () => {
   const sidebarToggle = useSelector((state) => state.theme.sidebarToggle);
 
