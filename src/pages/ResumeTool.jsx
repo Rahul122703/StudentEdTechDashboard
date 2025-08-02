@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   FaUpload,
   FaSearch,
@@ -9,19 +9,12 @@ import {
   FaClipboardList,
   FaUserTie,
 } from "react-icons/fa";
-import toast, { Toaster } from "react-hot-toast";
 
 const ResumeTool = () => {
   const [resumeText, setResumeText] = useState("");
   const [loading, setLoading] = useState(false);
   const [stage, setStage] = useState("idle");
   const [suggestions, setSuggestions] = useState([]);
-
-  useEffect(() => {
-    if (stage === "complete") {
-      toast.success("Resume enhancement completed!");
-    }
-  }, [stage]);
 
   const handleEnhance = () => {
     setStage("understanding");
@@ -48,9 +41,9 @@ const ResumeTool = () => {
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
     if (file && file.type === "application/pdf") {
-      toast.success("PDF uploaded successfully (simulated)");
+      alert("PDF uploaded successfully (simulate)");
     } else {
-      toast.error("Only PDF files are supported");
+      alert("Only PDF files are supported");
     }
   };
 
@@ -96,8 +89,7 @@ const ResumeTool = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <Toaster position="top-center" reverseOrder={false} />
+    <div className="min-h-screen bg-gray-100 p-4">
       <div className="max-w-5xl mx-auto">
         <div className="flex flex-col md:flex-row gap-6 md:items-center justify-between">
           <div>

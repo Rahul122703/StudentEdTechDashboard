@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { Sidebar, Topbar } from "./components";
-
+import Toaster from "react-hot-toast";
 import {
   Courses,
   Dashboard,
@@ -15,6 +15,7 @@ import {
 const App = () => {
   return (
     <div className="flex min-h-screen bg-blue-900 rounded-tl-2xl rounded-bl-2xl">
+      <Toaster position="top-right" />
       <Sidebar />
 
       <div className="flex flex-col flex-grow">

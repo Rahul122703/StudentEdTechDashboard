@@ -6,6 +6,7 @@ import {
   ParentDashboard,
 } from "../components";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { NavLink } from "react-router-dom";
 
 const reminders = [
   { subject: "Math", time: "5:00 PM" },
@@ -144,9 +145,7 @@ const Dashboard = () => {
           <div className="md:col-span-2 space-y-4">
             <div className="flex justify-between items-center">
               <h2 className="text-lg font-bold">Enrolled Courses</h2>
-              <a href="#" className="text-sm text-blue-600">
-                View All
-              </a>
+              <NavLink to="/courses">View all</NavLink>
             </div>
             {courses.map((course, idx) => (
               <EnrolledCourseCard key={idx} course={course} />
@@ -156,9 +155,6 @@ const Dashboard = () => {
           <div className="space-y-4">
             <div className="flex justify-between items-center">
               <h2 className="text-lg font-bold">Upcoming Quizzes</h2>
-              <a href="#" className="text-sm text-blue-600">
-                View All
-              </a>
             </div>
             {quizzes.map((quiz, idx) => (
               <UpcomingQuizCard key={idx} quiz={quiz} />

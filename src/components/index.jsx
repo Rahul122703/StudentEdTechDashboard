@@ -1,5 +1,5 @@
-import Sidebar from "./Dashboard/Sidebar";
-import Topbar from "./Dashboard/Topbar";
+import Sidebar from "./Sidebar";
+import Topbar from "./Topbar";
 import RecentCourseRow from "./Dashboard/RecentCourseRow";
 import EnrolledCourseCard from "./Dashboard/EnrolledCourseCard";
 import UpcomingQuizCard from "./Dashboard/UpcomingQuizCard";

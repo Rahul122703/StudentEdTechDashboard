@@ -5,7 +5,6 @@ import Progress from "./Progress";
 import ResumeTool from "./ResumeTool";
 import Settings from "./Settings";
 import Profile from "./Profile";
-
 export {
   Courses,
   Dashboard,

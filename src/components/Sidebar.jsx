@@ -12,7 +12,7 @@ import {
   FaToggleOff,
 } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleSidebar } from "../../redux/theme/themeSlice";
+import { toggleSidebar } from "../redux/theme/themeSlice";
 
 const navItems = [
   { label: "Dashboard", icon: <FaHome />, route: "/dashboard" },
