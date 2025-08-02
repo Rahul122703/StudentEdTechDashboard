@@ -6,128 +6,34 @@ import {
   FaCloud,
   FaShieldAlt,
 } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CourseCard } from "../components";
-
-// Original data with tags
-const coursesData = [
-  {
-    title: "Web Development Fundamentals",
-    instructor: "Engr. Zaib Ul Nissa",
-    progress: 75,
-    lessons: 12,
-    hours: 24,
-    color: "bg-green-500",
-    icon: <FaLaptopCode size={50} className="text-white" />,
-    tags: ["active", "technical"],
-  },
-  {
-    title: "Data Science Essentials",
-    instructor: "Engr. Faiz Nadeem Aalmani",
-    progress: 45,
-    lessons: 10,
-    hours: 20,
-    color: "bg-blue-500",
-    icon: <FaChartBar size={50} className="text-white" />,
-    tags: ["enrolled", "technical"],
-  },
-  {
-    title: "UI/UX Design Principles",
-    instructor: "Engr. Kainat Memon",
-    progress: 60,
-    lessons: 8,
-    hours: 16,
-    color: "bg-orange-500",
-    icon: <FaPalette size={50} className="text-white" />,
-    tags: ["active"],
-  },
-  {
-    title: "Machine Learning Fundamentals",
-    instructor: "TBA",
-    progress: 0,
-    lessons: 0,
-    hours: 0,
-    color: "bg-purple-600",
-    icon: <FaBrain size={50} className="text-white" />,
-    tags: ["technical"],
-  },
-  {
-    title: "Advanced JavaScript",
-    instructor: "Engr. Ayesha Khan",
-    progress: 35,
-    lessons: 14,
-    hours: 22,
-    color: "bg-yellow-500",
-    icon: <FaLaptopCode size={50} className="text-white" />,
-    tags: ["enrolled", "technical"],
-  },
-  {
-    title: "Database Management Systems",
-    instructor: "Dr. Aslam Shaikh",
-    progress: 80,
-    lessons: 15,
-    hours: 30,
-    color: "bg-red-500",
-    icon: <FaChartBar size={50} className="text-white" />,
-    tags: ["active", "technical"],
-  },
-  {
-    title: "React JS Mastery",
-    instructor: "Engr. Bilal Ahmed",
-    progress: 50,
-    lessons: 20,
-    hours: 25,
-    color: "bg-cyan-600",
-    icon: <FaLaptopCode size={50} className="text-white" />,
-    tags: ["active", "technical"],
-  },
-  {
-    title: "Cloud Computing Basics",
-    instructor: "Engr. Sara Malik",
-    progress: 65,
-    lessons: 10,
-    hours: 18,
-    color: "bg-indigo-500",
-    icon: <FaCloud size={50} className="text-white" />,
-    tags: ["technical"],
-  },
-  {
-    title: "Cyber Security 101",
-    instructor: "Dr. Imran Qureshi",
-    progress: 20,
-    lessons: 6,
-    hours: 12,
-    color: "bg-gray-700",
-    icon: <FaShieldAlt size={50} className="text-white" />,
-    tags: ["enrolled", "technical"],
-  },
-  {
-    title: "Python for Beginners",
-    instructor: "Engr. Hina Rizvi",
-    progress: 90,
-    lessons: 18,
-    hours: 28,
-    color: "bg-pink-500",
-    icon: <FaLaptopCode size={50} className="text-white" />,
-    tags: ["active", "technical"],
-  },
-];
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCourses } from "../redux/courses/coursesThunk";
+import { setFilter } from "../redux/courses/coursesSlice";
 
 const filterOptions = ["all", "active", "enrolled", "technical"];
 
 const Courses = () => {
+  const dispatch = useDispatch();
+  const {
+    data: coursesData,
+    status,
+    filter: currentFilter,
+  } = useSelector((state) => state.courses);
+
   const [searchTerm, setSearchTerm] = useState("");
-  const [filter, setFilter] = useState("all");
 
-  const filteredCourses = coursesData.filter((course) => {
-    const matchesSearch = course.title
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
+  useEffect(() => {
+    if (status === "idle") {
+      dispatch(fetchCourses());
+    }
+  }, [dispatch, status]);
 
-    const matchesFilter = filter === "all" || course.tags.includes(filter);
-
-    return matchesSearch && matchesFilter;
-  });
+  const filteredCourses =
+    coursesData?.filter((course) =>
+      course.title.toLowerCase().includes(searchTerm.toLowerCase())
+    ) || [];
 
   return (
     <div className="min-h-screen bg-gray-100 p-6 text-black">
@@ -138,7 +44,7 @@ const Courses = () => {
         </p>
 
         {/* Search bar and filters */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6 md:sticky fixed top-[4rem] md:top-0 left-6 right-4 w-[90%] bg-white p-3 rounded-xl">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6 md:sticky fixed top-[4rem] md:top-0 left-6 right-4 w-[90%] bg-white p-3 rounded-xl z-10">
           <input
             type="text"
             placeholder="Search courses..."
@@ -151,9 +57,9 @@ const Courses = () => {
             {filterOptions.map((option) => (
               <button
                 key={option}
-                onClick={() => setFilter(option)}
+                onClick={() => dispatch(setFilter(option))}
                 className={`px-4 py-2 rounded-md border text-sm ${
-                  filter === option
+                  currentFilter === option
                     ? "bg-blue-600 text-white"
                     : "bg-white text-gray-800 border-gray-300"
                 }`}
@@ -166,15 +72,25 @@ const Courses = () => {
 
         {/* Course Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-[5rem] md:mt-0">
-          {filteredCourses.length > 0 ? (
+          {status === "loading" && (
+            <p className="text-center text-gray-500 col-span-full">
+              Loading courses...
+            </p>
+          )}
+
+          {status === "succeeded" && filteredCourses.length > 0 ? (
             filteredCourses.map((course, index) => (
               <CourseCard key={index} course={course} />
             ))
-          ) : (
+          ) : status === "succeeded" && filteredCourses.length === 0 ? (
             <p className="text-center text-gray-500 col-span-full">
               No courses found.
             </p>
-          )}
+          ) : status === "failed" ? (
+            <p className="text-center text-red-500 col-span-full">
+              Failed to load courses.
+            </p>
+          ) : null}
         </div>
       </div>
     </div>

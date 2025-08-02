@@ -95,13 +95,13 @@ const SidebarDesktop = ({ sidebarToggle }) => (
 );
 
 const BottomNavMobile = () => (
-  <div className="fixed bottom-0 left-0 w-full bg-blue-900 text-white flex justify-around items-center py-2 px-1 md:hidden z-50 border-t border-blue-700 overflow-auto">
+  <div className="fixed bottom-0 left-0 w-full h-[4rem] bg-blue-900 text-white flex justify-around items-center py-2 px-1 md:hidden z-50 border-t border-blue-700 overflow-auto">
     {navItems.map((item, index) => (
       <NavLink
         to={item.route}
         key={index}
         className={({ isActive }) =>
-          `flex flex-col items-center text-xs gap-1 ${
+          `flex flex-col items-center text-xs gap-1 mx-2 ${
             isActive ? "text-white" : "text-blue-300"
           }`
         }
@@ -109,6 +109,7 @@ const BottomNavMobile = () => (
         <span className="text-xl">{item.icon}</span>
       </NavLink>
     ))}
+
     <div
       onClick={() => toast.success("Logged out successfully")}
       className={`flex items-center gap-3 px-3 py-2 transition-colors rounded-tl-lg rounded-bl-lg `}

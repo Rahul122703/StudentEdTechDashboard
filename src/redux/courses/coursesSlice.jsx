@@ -1,12 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCourses } from "./coursesThunk.jsx";
-
-import { coursesInitialState } from "./coursesInitialState.jsx";
+import { fetchCourses } from "./coursesThunk";
 
 const coursesSlice = createSlice({
   name: "courses",
-  initialState: coursesInitialState,
-  reducers: {},
+  initialState: {
+    allData: [],
+    data: [],
+    status: "idle",
+    error: null,
+    filter: "all",
+  },
+  reducers: {
+    setFilter: (state, action) => {
+      const selectedFilter = action.payload;
+      console.log("Filter applied:", selectedFilter);
+      state.filter = selectedFilter;
+
+      if (selectedFilter === "all") {
+        state.data = state.allData;
+      } else {
+        state.data = state.allData.filter((course) => {
+          console.log(course);
+          return course.tags.includes(selectedFilter);
+        });
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCourses.pending, (state) => {
@@ -14,8 +33,7 @@ const coursesSlice = createSlice({
       })
       .addCase(fetchCourses.fulfilled, (state, action) => {
         state.status = "succeeded";
-        console.log("action.payload");
-        console.log(action.payload);
+        state.allData = action.payload;
         state.data = action.payload;
       })
       .addCase(fetchCourses.rejected, (state, action) => {
@@ -25,4 +43,5 @@ const coursesSlice = createSlice({
   },
 });
 
+export const { setFilter } = coursesSlice.actions;
 export default coursesSlice.reducer;
