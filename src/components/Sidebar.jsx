@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-hot-toast";
+
 import {
   FaHome,
   FaBook,
@@ -13,6 +15,7 @@ import {
 } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../redux/theme/themeSlice";
+import { LogOut } from "lucide-react";
 
 const navItems = [
   { label: "Dashboard", icon: <FaHome />, route: "/dashboard" },
@@ -21,7 +24,7 @@ const navItems = [
   { label: "Progress", icon: <FaChartLine />, route: "/progress" },
   { label: "Messages", icon: <FaEnvelope />, route: "/messages" },
   { label: "Settings", icon: <FaCog />, route: "/settings" },
-  { label: "Logout", icon: <FaSignOutAlt />, route: "/logout" },
+  // { label: "Logout", icon: <FaSignOutAlt />, route: "/logout" },
 ];
 
 const ToggleButton = ({ sidebarToggle }) => {
@@ -64,7 +67,7 @@ const SidebarDesktop = ({ sidebarToggle }) => (
           key={index}
           className={({ isActive }) =>
             `flex items-center gap-3 px-3 py-2 transition-colors rounded-tl-lg rounded-bl-lg ${
-              isActive ? "bg-gray-50 text-blue-900" : "text-white bg-blue-900"
+              isActive ? "bg-gray-100 text-blue-900" : "text-white bg-blue-900"
             }`
           }
         >
@@ -76,6 +79,17 @@ const SidebarDesktop = ({ sidebarToggle }) => (
           )}
         </NavLink>
       ))}
+      <div
+        onClick={() => toast.success("Logged out successfully")}
+        className={`flex items-center gap-3 px-3 py-2 transition-colors rounded-tl-lg rounded-bl-lg `}
+      >
+        <span className="text-lg">
+          <LogOut />
+        </span>
+        {sidebarToggle && (
+          <span className="text-sm font-medium whitespace-nowrap">Logout</span>
+        )}
+      </div>
     </nav>
   </div>
 );
@@ -95,6 +109,14 @@ const BottomNavMobile = () => (
         <span className="text-xl">{item.icon}</span>
       </NavLink>
     ))}
+    <div
+      onClick={() => toast.success("Logged out successfully")}
+      className={`flex items-center gap-3 px-3 py-2 transition-colors rounded-tl-lg rounded-bl-lg `}
+    >
+      <span className="text-lg">
+        <LogOut />
+      </span>
+    </div>
   </div>
 );
 

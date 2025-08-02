@@ -10,6 +10,7 @@ import {
   Progress,
   ResumeTool,
   Settings,
+  Profile,
 } from "./pages";
 
 const App = () => {
@@ -20,7 +21,6 @@ const App = () => {
 
       <div className="flex flex-col flex-grow">
         <Topbar />
-
         <main className="overflow-y-auto md:h-[42rem] rounded-2xl">
           <Routes>
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
@@ -30,12 +30,14 @@ const App = () => {
             <Route path="/progress" element={<Progress />} />
             <Route path="/messages" element={<Messages />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/profile" element={<Profile />} />
             <Route
               path="*"
               element={<h1 className="text-2xl">404 - Page Not Found</h1>}
             />
           </Routes>
         </main>
+        /messages
       </div>
     </div>
   );
