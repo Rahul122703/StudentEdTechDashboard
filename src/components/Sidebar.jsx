@@ -44,12 +44,12 @@ const ToggleButton = ({ sidebarToggle }) => {
 
 const SidebarDesktop = ({ sidebarToggle }) => (
   <div
-    className={`hidden md:flex h-screen bg-blue-900 text-white flex-col transition-all duration-300  ${
-      sidebarToggle ? "w-64 px-4" : "w-20 px-2"
+    className={`hidden md:flex h-screen bg-blue-900 text-white flex-col transition-all duration-300 rounded-br-lg rounded-tr-lg ${
+      sidebarToggle ? "w-64 pl-4" : "w-20 pl-2"
     } py-6`}
   >
     <div
-      className={`text-center font-bold text-xl mb-10 transition-opacity duration-300 text-white ${
+      className={`text-center font-bold text-xl mb-10 transition-opacity duration-300 ${
         sidebarToggle ? "opacity-100" : "opacity-0"
       }`}
     >
@@ -63,8 +63,10 @@ const SidebarDesktop = ({ sidebarToggle }) => (
           to={item.route}
           key={index}
           className={({ isActive }) =>
-            `flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
-              isActive ? "bg-blue-700" : "hover:bg-blue-700"
+            `flex items-center gap-3 px-3 py-2 transition-colors rounded-tl-lg rounded-bl-lg ${
+              isActive
+                ? "bg-white text-blue-900"
+                : "text-white bg-blue-900  rounded-br-lg rounded-tr-lg"
             }`
           }
         >

@@ -6,6 +6,7 @@ import RecentCourseRow from "./RecentCourseRow";
 import EnrolledCourseCard from "./EnrolledCourseCard";
 import UpcomingQuizCard from "./UpcomingQuizCard";
 import StudyReminderCard from "./StudyReminderCard";
+import ParentDashboard from "./ParentDashboard";
 
 export {
   Sidebar,
@@ -16,4 +17,5 @@ export {
   EnrolledCourseCard,
   UpcomingQuizCard,
   StudyReminderCard,
+  ParentDashboard,
 };
