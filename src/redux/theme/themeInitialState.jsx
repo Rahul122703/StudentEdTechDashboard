@@ -1,1 +1,1 @@
-export const themeInitialState = { data: [], status: "idle", error: null };
+export const themeInitialState = { sidebarToggle: true };

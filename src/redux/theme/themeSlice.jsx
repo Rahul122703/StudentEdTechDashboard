@@ -1,12 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchtheme } from "./themeThunk.jsx";
-
 import { themeInitialState } from "./themeInitialState.jsx";
 
 const themeSlice = createSlice({
   name: "theme",
   initialState: themeInitialState,
-  reducers: {},
+  reducers: {
+    toggleSidebar: (state) => {
+      state.sidebarToggle = !state.sidebarToggle;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchtheme.pending, (state) => {
@@ -23,4 +26,5 @@ const themeSlice = createSlice({
   },
 });
 
+export const { toggleSidebar } = themeSlice.actions;
 export default themeSlice.reducer;
