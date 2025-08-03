@@ -95,7 +95,7 @@ const SidebarDesktop = ({ sidebarToggle }) => (
 );
 
 const BottomNavMobile = () => (
-  <div className="fixed bottom-0 left-0 w-full h-[4rem] bg-blue-900 text-white flex justify-around items-center py-2 px-1 md:hidden z-50 border-t border-blue-700 overflow-auto">
+  <div className="rounded-tr-lg rounded-tl-lg fixed bottom-0 left-0 w-full h-[4rem] bg-blue-900 text-white flex justify-around items-center py-2 px-1 md:hidden z-50 border-t border-blue-700 overflow-auto">
     {navItems.map((item, index) => (
       <NavLink
         to={item.route}

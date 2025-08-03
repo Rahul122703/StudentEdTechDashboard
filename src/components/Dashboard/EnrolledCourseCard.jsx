@@ -1,14 +1,11 @@
 import React from "react";
-
+import { NavLink } from "react-router-dom";
 const EnrolledCourseCard = ({ course }) => {
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6 space-y-4 transition hover:shadow-lg">
-      <div className="flex items-start gap-4">
-        <div className="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-bold">
-          {course.icon}
-        </div>
-        <div>
-          <h3 className="text-lg font-semibold text-gray-800">
+    <div className="bg-white rounded-2xl shadow-sm p-5 sm:p-6 flex flex-col justify-between gap-4 hover:shadow-md transition-all my-3">
+      <div className="flex items-center gap-4">
+        <div className="flex-1">
+          <h3 className="text-base sm:text-lg font-semibold text-gray-800">
             {course.title}
           </h3>
           <p className="text-sm text-gray-500">
@@ -17,22 +14,28 @@ const EnrolledCourseCard = ({ course }) => {
         </div>
       </div>
 
-      <div>
-        <p className="text-sm font-medium text-gray-700 mb-1">
-          Progress: <span className="text-blue-600">{course.progress}%</span>
+      <div className="w-full">
+        <p className="text-sm text-gray-700 font-medium mb-1">
+          Progress:{" "}
+          <span className="text-blue-600 font-semibold">
+            {course.progress}%
+          </span>
         </p>
-        <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+        <div className="w-full h-2 bg-gray-200 rounded-full">
           <div
-            className="h-full bg-blue-600 transition-all duration-300"
+            className="h-full bg-blue-600 rounded-full transition-all duration-300"
             style={{ width: `${course.progress}%` }}
           />
         </div>
       </div>
 
       <div className="pt-2">
-        <button className="w-1/4 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 rounded-md transition">
+        <NavLink
+          to="/courses"
+          className="px-2 py-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition"
+        >
           Continue Learning
-        </button>
+        </NavLink>
       </div>
     </div>
   );

@@ -1,64 +1,43 @@
 import React from "react";
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
-
-const COLORS = ["#6366F1", "#E5E7EB"];
-
-const lectureAttendanceData = [
-  { course: "DS", total: 40, attended: 36 },
-  { course: "DBMS", total: 35, attended: 30 },
-  { course: "COA", total: 25, attended: 20 },
-];
-
-const courseAttendanceCharts = lectureAttendanceData.map((courseData) => ({
-  course: courseData.course,
-  data: [
-    { name: "Attended", value: courseData.attended },
-    { name: "Missed", value: courseData.total - courseData.attended },
-  ],
-}));
+import { useSelector } from "react-redux";
 
 const AttendenceStats = () => {
+  const courses = useSelector((state) => state.courses.data);
+
+  const lectureAttendanceData = courses
+    .filter(
+      (course) => course.attendance && course.attendance.totalLectures > 0
+    )
+    .map((course) => ({
+      course: course.title,
+      total: course.attendance.totalLectures,
+      attended: course.attendance.attended,
+    }));
+
   return (
-    <div className="w-full grid md:grid-cols-3 gap-6">
-      {courseAttendanceCharts.map((chart, i) => (
-        <div key={i} className="bg-white p-4 rounded-xl shadow-md">
-          <h3 className="text-center text-base font-semibold mb-2 text-gray-800">
-            {chart.course}
-          </h3>
-          <div className="h-48">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={chart.data}
-                  dataKey="value"
-                  nameKey="name"
-                  innerRadius={50}
-                  outerRadius={70}
-                  paddingAngle={4}
-                  labelLine={false}
-                  label={({ name, percent }) =>
-                    `${name}: ${(percent * 100).toFixed(0)}%`
-                  }
-                >
-                  {chart.data.map((entry, idx) => (
-                    <Cell
-                      key={`cell-${i}-${idx}`}
-                      fill={COLORS[idx % COLORS.length]}
-                    />
-                  ))}
-                </Pie>
-                <Legend
-                  layout="horizontal"
-                  verticalAlign="bottom"
-                  align="center"
-                  iconType="circle"
-                  wrapperStyle={{ fontSize: "12px", marginTop: "10px" }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
+    <div className="w-full flex flex-wrap gap-4 overflow-y-auto max-h-[15rem] p-2 justify-around">
+      {lectureAttendanceData.map((data, i) => {
+        const percent = ((data.attended / data.total) * 100).toFixed(0);
+        return (
+          <div
+            key={i}
+            className="w-50 bg-white p-3 rounded-xl shadow-md flex-shrink-0"
+          >
+            <h3 className="text-center text-sm font-semibold mb-3 text-gray-800">
+              {data.course}
+            </h3>
+            <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
+              <div
+                className="h-4 bg-indigo-500 transition-all"
+                style={{ width: `${percent}%` }}
+              />
+            </div>
+            <div className="text-sm text-center mt-2 text-gray-600">
+              {percent}% Attended ({data.attended}/{data.total})
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };

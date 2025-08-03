@@ -10,6 +10,8 @@ import {
   FaUserTie,
 } from "react-icons/fa";
 
+import toast from "react-hot-toast";
+
 const ResumeTool = () => {
   const [resumeText, setResumeText] = useState("");
   const [loading, setLoading] = useState(false);
@@ -34,6 +36,7 @@ const ResumeTool = () => {
         ]);
         setLoading(false);
         setStage("complete");
+        toast.success("Resume analyzed completely");
       }, 1500);
     }, 1500);
   };

@@ -2,8 +2,8 @@ import { FaBook, FaClock, FaCertificate } from "react-icons/fa";
 
 const CourseCard = ({ course }) => {
   return (
-    <div className="rounded-2xl shadow-lg overflow-hidden flex flex-col bg-white text-black">
-      <div className={`h-32 flex items-center justify-center ${course.color}`}>
+    <div className="rounded-2xl shadow-lg overflow-hidden flex flex-col bg-white text-black hover:shadow-2xl">
+      <div className={`h-45 flex items-center justify-center ${course.color}`}>
         <div className=" h-full w-full ">
           <img
             src={course.image}

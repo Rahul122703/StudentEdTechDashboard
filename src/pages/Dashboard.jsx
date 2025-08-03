@@ -1,12 +1,15 @@
-import React from "react";
+import { useEffect } from "react";
 import {
   EnrolledCourseCard,
   UpcomingQuizCard,
   AttendenceStats,
   ParentDashboard,
 } from "../components";
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 import { NavLink } from "react-router-dom";
+
+import { useSelector, useDispatch } from "react-redux";
+import { fetchCourses } from ".././redux/courses/coursesThunk";
 
 const reminders = [
   { subject: "Math", time: "5:00 PM" },
@@ -20,27 +23,6 @@ const assignmentData = [
   { day: "4", submissions: 2 },
   { day: "5", submissions: 6 },
   { day: "6", submissions: 7 },
-];
-
-const courses = [
-  {
-    title: "Web Development Fundamentals",
-    instructor: "Engr. Zaib Ul Nissa",
-    progress: 75,
-    icon: "💻",
-  },
-  {
-    title: "Data Science Essentials",
-    instructor: "Engr. Faiz Nadeem Aalmani",
-    progress: 45,
-    icon: "📊",
-  },
-  {
-    title: "UI/UX Design Principles",
-    instructor: "Engr. Kainat Memon",
-    progress: 60,
-    icon: "🎨",
-  },
 ];
 
 const quizzes = [
@@ -79,8 +61,17 @@ const pieData = [
 const COLORS = ["#6366F1", "#E5E7EB"];
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+  const { data: coursesData, status } = useSelector((state) => state.courses);
+
+  useEffect(() => {
+    if (status === "idle") {
+      dispatch(fetchCourses());
+    }
+  }, [dispatch, status]);
+
   return (
-    <div className="flex bg-gray-50 min-h-screen">
+    <div className="flex bg-gray-100 min-h-screen">
       <main className="flex-1 p-6 space-y-6">
         <div className="bg-white rounded-xl shadow p-6">
           <h1 className="text-xl font-bold text-indigo-600 mb-2">
@@ -97,11 +88,11 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl shadow p-6">
+        <div className="bg-white rounded-xl shadow p-6 h-auto">
           <h2 className="text-lg font-semibold text-gray-800 mb-4">
             Weekly Goal Completion
           </h2>
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-8 justify-center h-auto">
             <div className="w-full md:w-1/2 h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
@@ -120,11 +111,19 @@ const Dashboard = () => {
                       />
                     ))}
                   </Pie>
+                  <Legend
+                    verticalAlign="bottom"
+                    align="center"
+                    iconType="circle"
+                    layout="horizontal"
+                  />
                 </PieChart>
               </ResponsiveContainer>
             </div>
-            <AttendenceStats />
-            <div className="w-full md:w-1/2 grid grid-cols-2 gap-4">
+            <div className="border border-none w-full md:max-w-[42rem] overflow-auto md:mt-4">
+              <AttendenceStats />
+            </div>
+            <div className="w-full md:w-1/2 grid grid-cols-2 gap-4 ">
               {progressStats.map((item, idx) => (
                 <div
                   key={idx}
@@ -140,16 +139,19 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Enrolled Courses + Quizzes */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="md:col-span-2 space-y-4">
-            <div className="flex justify-between items-center">
-              <h2 className="text-lg font-bold">Enrolled Courses</h2>
+          <div className="max-h-[30rem] md:col-span-2 space-y-4   overflow-y-auto rounded-xl flex flex-col border border-white  p-3 overflow-clip">
+            <div className="flex justify-between items-center sticky top-0 bg-white p-2 shadow-md rounded-lg">
+              <h2 className="text-lg font-bold">Recent Courses</h2>
               <NavLink to="/courses">View all</NavLink>
             </div>
-            {courses.map((course, idx) => (
-              <EnrolledCourseCard key={idx} course={course} />
-            ))}
+            <div>
+              {coursesData
+                .filter((current) => current.recent)
+                .map((course, idx) => (
+                  <EnrolledCourseCard key={idx} course={course} />
+                ))}
+            </div>
           </div>
 
           <div className="space-y-4">

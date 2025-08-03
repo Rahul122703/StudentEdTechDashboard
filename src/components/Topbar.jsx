@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { FaBell, FaUserCircle } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { NavLink } from "react-router-dom";
-
+import toast from "react-hot-toast";
 const Topbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -53,11 +53,14 @@ const Topbar = () => {
                     Settings
                   </li>
                 </NavLink>
-                <NavLink to="/logout">
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    Logout
-                  </li>
-                </NavLink>
+                <li
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  onClick={() => {
+                    toast.success("Logged out successfully");
+                  }}
+                >
+                  Logout
+                </li>
               </ul>
             </div>
           )}

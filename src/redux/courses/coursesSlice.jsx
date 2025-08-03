@@ -1,6 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchCourses } from "./coursesThunk";
 
+const applyFilters = (allData, filter, searchTerm) => {
+  return allData.filter((course) => {
+    const matchesFilter =
+      filter === "all" ||
+      course.tags
+        .map((tag) => tag.toLowerCase())
+        .includes(filter.toLowerCase());
+    const matchesSearch = course.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    return matchesFilter && matchesSearch;
+  });
+};
+
 const coursesSlice = createSlice({
   name: "courses",
   initialState: {
@@ -9,21 +23,26 @@ const coursesSlice = createSlice({
     status: "idle",
     error: null,
     filter: "all",
+    searchTerm: "",
+    allFilters: [],
   },
   reducers: {
     setFilter: (state, action) => {
-      const selectedFilter = action.payload;
-      console.log("Filter applied:", selectedFilter);
-      state.filter = selectedFilter;
-
-      if (selectedFilter === "all") {
-        state.data = state.allData;
-      } else {
-        state.data = state.allData.filter((course) => {
-          console.log(course);
-          return course.tags.includes(selectedFilter);
+      state.filter = action.payload;
+      state.data = applyFilters(state.allData, state.filter, state.searchTerm);
+    },
+    setSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
+      state.data = applyFilters(state.allData, state.filter, state.searchTerm);
+    },
+    getAllFilters: (state) => {
+      const tagSet = new Set();
+      state.allData.forEach((course) => {
+        course.tags.forEach((tag) => {
+          tagSet.add(tag.toLowerCase());
         });
-      }
+      });
+      state.allFilters = ["all", ...Array.from(tagSet)];
     },
   },
   extraReducers: (builder) => {
@@ -34,7 +53,11 @@ const coursesSlice = createSlice({
       .addCase(fetchCourses.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.allData = action.payload;
-        state.data = action.payload;
+        state.data = applyFilters(
+          action.payload,
+          state.filter,
+          state.searchTerm
+        );
       })
       .addCase(fetchCourses.rejected, (state, action) => {
         state.status = "failed";
@@ -43,5 +66,5 @@ const coursesSlice = createSlice({
   },
 });
 
-export const { setFilter } = coursesSlice.actions;
+export const { setFilter, setSearchTerm, getAllFilters } = coursesSlice.actions;
 export default coursesSlice.reducer;

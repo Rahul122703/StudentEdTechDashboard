@@ -1,0 +1,281 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "title": "Web Development Fundamentals",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCMssiYfC-okTd6Z8X-8El4xLPJynDoNcOlA&s",
+      "instructor": "Engr. Zaib Ul Nissa",
+      "progress": 75,
+      "lessons": 12,
+      "hours": 24,
+      "color": "bg-green-500",
+      "icon": "FaLaptopCode",
+      "tags": ["Enrolled", "Technical"],
+      "recent": true,
+      "attendance": {
+        "totalLectures": 12,
+        "attended": 9
+      }
+    },
+    {
+      "id": 2,
+      "title": "Data Science Essentials",
+      "image": "https://www.mygreatlearning.com/blog/wp-content/uploads/2019/09/What-is-data-science-2.jpg",
+      "instructor": "Engr. Faiz Nadeem Aalmani",
+      "progress": 45,
+      "lessons": 10,
+      "hours": 20,
+      "color": "bg-blue-500",
+      "icon": "FaChartBar",
+      "tags": ["Enrolled", "Technical"],
+      "recent": true,
+      "attendance": {
+        "totalLectures": 10,
+        "attended": 5
+      }
+    },
+    {
+      "id": 3,
+      "title": "UI/UX Design Principles",
+      "image": "https://blog.pwskills.com/wp-content/uploads/2025/01/4-UI_UX-Design-Courses-For-Free-On-YouTube.jpg",
+      "instructor": "Engr. Kainat Memon",
+      "progress": 60,
+      "lessons": 8,
+      "hours": 16,
+      "color": "bg-orange-500",
+      "icon": "FaPalette",
+      "tags": ["Enrolled"],
+      "recent": false,
+      "attendance": {
+        "totalLectures": 8,
+        "attended": 5
+      }
+    },
+    {
+      "id": 4,
+      "title": "Machine Learning Fundamentals",
+      "image": "https://101blockchains.com/wp-content/uploads/2025/04/Machine_Learning_Fundamental.png",
+      "instructor": "TBA",
+      "progress": 0,
+      "lessons": 0,
+      "hours": 0,
+      "color": "bg-purple-600",
+      "icon": "FaBrain",
+      "tags": ["Technical"],
+      "recent": false,
+      "attendance": {
+        "totalLectures": 0,
+        "attended": 0
+      }
+    },
+    {
+      "id": 5,
+      "title": "Advanced JavaScript",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjplyu-rILMIaKhSihUMbqrTTXseXvpJnJ_A&s",
+      "instructor": "Engr. Ayesha Khan",
+      "progress": 35,
+      "lessons": 14,
+      "hours": 22,
+      "color": "bg-yellow-500",
+      "icon": "FaLaptopCode",
+      "tags": ["Enrolled", "Technical"],
+      "recent": true,
+      "attendance": {
+        "totalLectures": 14,
+        "attended": 5
+      }
+    },
+    {
+      "id": 6,
+      "title": "Database Management Systems",
+      "image": "https://getsdeready.com/wp-content/uploads/2024/07/2.webp",
+      "instructor": "Dr. Aslam Shaikh",
+      "progress": 80,
+      "lessons": 15,
+      "hours": 30,
+      "color": "bg-red-500",
+      "icon": "FaChartBar",
+      "tags": ["Completed", "Technical"],
+      "recent": false,
+      "attendance": {
+        "totalLectures": 15,
+        "attended": 12
+      }
+    },
+    {
+      "id": 7,
+      "title": "React JS Mastery",
+      "image": "https://i.ytimg.com/vi/XxXyfkrP298/maxresdefault.jpg",
+      "instructor": "Engr. Bilal Ahmed",
+      "progress": 50,
+      "lessons": 20,
+      "hours": 25,
+      "color": "bg-cyan-600",
+      "icon": "FaLaptopCode",
+      "tags": ["Enrolled", "Technical"],
+      "recent": true,
+      "attendance": {
+        "totalLectures": 20,
+        "attended": 10
+      }
+    },
+    {
+      "id": 8,
+      "title": "Cloud Computing Basics",
+      "image": "https://30dayscoding.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2F3pv3o0yr6pgj%2F1fWaLZ89P7IaTSftLXoUr7%2F72eb9183413ea1f155565d313afebeb2%2FIMG-20240916-WA0371.jpg&w=1920&q=75",
+      "instructor": "Engr. Sara Malik",
+      "progress": 65,
+      "lessons": 10,
+      "hours": 18,
+      "color": "bg-indigo-500",
+      "icon": "FaCloud",
+      "tags": ["Enrolled"],
+      "recent": true,
+      "attendance": {
+        "totalLectures": 10,
+        "attended": 7
+      }
+    },
+    {
+      "id": 9,
+      "title": "Cyber Security 101",
+      "image": "https://i.ytimg.com/vi/nGs5Wnh4Xug/maxresdefault.jpg",
+      "instructor": "Dr. Imran Qureshi",
+      "progress": 20,
+      "lessons": 6,
+      "hours": 12,
+      "color": "bg-gray-700",
+      "icon": "FaShieldAlt",
+      "tags": ["Technical"],
+      "recent": false,
+      "attendance": {
+        "totalLectures": 6,
+        "attended": 1
+      }
+    },
+    {
+      "id": 10,
+      "title": "Python for Beginners",
+      "image": "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210215160315/FREE-Python-Course-For-Beginners.png",
+      "instructor": "Engr. Hina Rizvi",
+      "progress": 90,
+      "lessons": 18,
+      "hours": 28,
+      "color": "bg-pink-500",
+      "icon": "FaLaptopCode",
+      "tags": ["Completed", "Enrolled"],
+      "recent": true,
+      "attendance": {
+        "totalLectures": 18,
+        "attended": 16
+      }
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "sender": "Admin",
+      "subject": "Welcome to the Course Portal",
+      "content": "We’re excited to have you on board! Start exploring your dashboard.",
+      "isRead": false
+    },
+    {
+      "id": 2,
+      "sender": "Instructor Zaib Ul Nissa",
+      "subject": "Assignment Deadline Extended",
+      "content": "The deadline for your web development assignment has been extended by 2 days.",
+      "isRead": false
+    },
+    {
+      "id": 3,
+      "sender": "Support",
+      "subject": "Need Help?",
+      "content": "Feel free to reach out to support anytime from the help section.",
+      "isRead": true
+    },
+    {
+      "id": 4,
+      "sender": "Course Admin",
+      "subject": "New Module Available",
+      "content": "A new module on React Hooks is now available in your course.",
+      "isRead": false
+    },
+    {
+      "id": 5,
+      "sender": "Instructor John Doe",
+      "subject": "Live Session Reminder",
+      "content": "Don’t forget about the live coding session tomorrow at 10:00 AM.",
+      "isRead": true
+    },
+    {
+      "id": 6,
+      "sender": "Support",
+      "subject": "Scheduled Maintenance",
+      "content": "The platform will be down for maintenance this weekend.",
+      "isRead": false
+    },
+    {
+      "id": 7,
+      "sender": "Admin",
+      "subject": "New Feature Added",
+      "content": "You can now track your progress with detailed analytics.",
+      "isRead": true
+    },
+    {
+      "id": 8,
+      "sender": "Instructor Zaib Ul Nissa",
+      "subject": "Project Guidelines Updated",
+      "content": "Please review the updated project submission guidelines.",
+      "isRead": false
+    },
+    {
+      "id": 9,
+      "sender": "Admin",
+      "subject": "Community Forum Launched",
+      "content": "Join discussions and connect with peers on the new community forum.",
+      "isRead": false
+    },
+    {
+      "id": 10,
+      "sender": "Support",
+      "subject": "Feedback Requested",
+      "content": "Let us know how we’re doing by filling out a short survey.",
+      "isRead": true
+    },
+    {
+      "id": 11,
+      "sender": "Instructor John Doe",
+      "subject": "Extra Practice Material",
+      "content": "Additional exercises on React have been added to the resources section.",
+      "isRead": true
+    },
+    {
+      "id": 12,
+      "sender": "Course Admin",
+      "subject": "Leaderboard Update",
+      "content": "Check out the latest top performers on the course leaderboard!",
+      "isRead": false
+    },
+    {
+      "id": 13,
+      "sender": "Admin",
+      "subject": "Course Completion Certificate",
+      "content": "Certificates will be available for download after course completion.",
+      "isRead": true
+    },
+    {
+      "id": 14,
+      "sender": "Instructor Zaib Ul Nissa",
+      "subject": "Assignment Feedback Released",
+      "content": "Feedback for your last assignment is now available.",
+      "isRead": false
+    },
+    {
+      "id": 15,
+      "sender": "Support",
+      "subject": "Password Reset Confirmation",
+      "content": "Your password was successfully changed. Contact support if not done by you.",
+      "isRead": true
+    }
+  ]
+}
