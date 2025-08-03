@@ -6,9 +6,8 @@ import UpcomingQuizCard from "./Dashboard/UpcomingQuizCard";
 import ParentDashboard from "./Dashboard/ParentDashboard";
 import AttendenceStats from "./Dashboard/AttendenceStats";
 import StudyReminderCard from "./Dashboard/StudyReminderCard";
-
 import CourseCard from "./Courses/CourseCard";
-
+import Notification from "./Notification";
 export {
   Sidebar,
   Topbar,
@@ -19,4 +18,5 @@ export {
   AttendenceStats,
   StudyReminderCard,
   CourseCard,
+  Notification,
 };

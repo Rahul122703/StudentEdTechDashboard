@@ -11,7 +11,7 @@ import StudyReminderCard from "./StudyReminderCard";
 
 const ParentDashboard = ({ reminders, assignmentData }) => {
   return (
-    <div className="flex flex-wrap justify-between gap-6 p-[0.5rem]">
+    <div className="flex flex-wrap justify-between gap-6 p-[0.5rem] md:m-auto mb-10">
       <div className="w-full md:w-1/2 bg-white rounded-2xl shadow-md p-5 space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-semibold text-gray-800">

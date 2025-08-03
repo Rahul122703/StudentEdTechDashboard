@@ -4,155 +4,59 @@ import {
   FaUserCircle,
   FaCheckCircle,
   FaReply,
-  FaTrashAlt,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
-
-const messagesData = [
-  {
-    id: 1,
-    sender: "Admin",
-    subject: "Welcome to the Course Portal",
-    content:
-      "We’re excited to have you on board! Start exploring your dashboard.",
-    isRead: false,
-  },
-  {
-    id: 2,
-    sender: "Instructor Zaib Ul Nissa",
-    subject: "Assignment Deadline Extended",
-    content:
-      "The deadline for your web development assignment has been extended by 2 days.",
-    isRead: false,
-  },
-  {
-    id: 3,
-    sender: "Support",
-    subject: "Need Help?",
-    content: "Feel free to reach out to support anytime from the help section.",
-    isRead: true,
-  },
-  {
-    id: 4,
-    sender: "Course Admin",
-    subject: "New Module Available",
-    content: "A new module on React Hooks is now available in your course.",
-    isRead: false,
-  },
-  {
-    id: 5,
-    sender: "Instructor John Doe",
-    subject: "Live Session Reminder",
-    content: "Don’t forget about the live coding session tomorrow at 10:00 AM.",
-    isRead: true,
-  },
-  {
-    id: 6,
-    sender: "Support",
-    subject: "Scheduled Maintenance",
-    content: "The platform will be down for maintenance this weekend.",
-    isRead: false,
-  },
-  {
-    id: 7,
-    sender: "Admin",
-    subject: "New Feature Added",
-    content: "You can now track your progress with detailed analytics.",
-    isRead: true,
-  },
-  {
-    id: 8,
-    sender: "Instructor Zaib Ul Nissa",
-    subject: "Project Guidelines Updated",
-    content: "Please review the updated project submission guidelines.",
-    isRead: false,
-  },
-  {
-    id: 9,
-    sender: "Admin",
-    subject: "Community Forum Launched",
-    content:
-      "Join discussions and connect with peers on the new community forum.",
-    isRead: false,
-  },
-  {
-    id: 10,
-    sender: "Support",
-    subject: "Feedback Requested",
-    content: "Let us know how we’re doing by filling out a short survey.",
-    isRead: true,
-  },
-  {
-    id: 11,
-    sender: "Instructor John Doe",
-    subject: "Extra Practice Material",
-    content:
-      "Additional exercises on React have been added to the resources section.",
-    isRead: true,
-  },
-  {
-    id: 12,
-    sender: "Course Admin",
-    subject: "Leaderboard Update",
-    content: "Check out the latest top performers on the course leaderboard!",
-    isRead: false,
-  },
-  {
-    id: 13,
-    sender: "Admin",
-    subject: "Course Completion Certificate",
-    content:
-      "Certificates will be available for download after course completion.",
-    isRead: true,
-  },
-  {
-    id: 14,
-    sender: "Instructor Zaib Ul Nissa",
-    subject: "Assignment Feedback Released",
-    content: "Feedback for your last assignment is now available.",
-    isRead: false,
-  },
-  {
-    id: 15,
-    sender: "Support",
-    subject: "Password Reset Confirmation",
-    content:
-      "Your password was successfully changed. Contact support if not done by you.",
-    isRead: true,
-  },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { fetchmessages } from "../redux/messages/messagesThunk";
+import { setFilteredMessages } from "../redux/messages/messagesSlice";
 
 const Messages = () => {
-  const [messages, setMessages] = useState(messagesData);
+  const dispatch = useDispatch();
+  const { allMessagesData, filterMessageData, status, error } = useSelector(
+    (state) => state.messages
+  );
 
   const [selectedMessages, setSelectedMessages] = useState([]);
   const [expandedId, setExpandedId] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const messagesPerPage = 5;
 
-  const newAdminMessage = {
-    id: 1,
-    sender: "Admin",
-    subject: "Welcome to the Course Portal",
-    content:
-      "We’re excited to have you on board! Start exploring your dashboard.",
-    isRead: false,
-  };
+  useEffect(() => {
+    dispatch(fetchmessages());
+  }, [dispatch]);
 
   useEffect(() => {
-    const isAdminMsgPresent = messages.some(
-      (msg) => msg.id === newAdminMessage.id
-    );
-    if (!isAdminMsgPresent) {
-      setMessages((prev) => [newAdminMessage, ...prev]);
-      toast.success("📩 New message from Admin received");
+    if (status === "succeeded") {
+      const isAdminMsgPresent = allMessagesData.some((msg) => msg.id === 1);
+      if (!isAdminMsgPresent) {
+        toast.success("📩 New message from Admin received");
+      }
+      dispatch(setFilteredMessages(allMessagesData));
+    } else if (status === "failed") {
+      toast.error("Failed to fetch messages");
     }
-  }, []);
+  }, [status, allMessagesData, dispatch]);
 
   const markAsRead = (id) => {
-    setMessages(
-      messages.map((msg) => (msg.id === id ? { ...msg, isRead: true } : msg))
+    const updated = filterMessageData.map((msg) =>
+      msg.id === id ? { ...msg, isRead: true } : msg
     );
+    dispatch(setFilteredMessages(updated));
+  };
+
+  const markAllAsRead = () => {
+    const updated = filterMessageData.map((msg) => ({ ...msg, isRead: true }));
+    dispatch(setFilteredMessages(updated));
+    toast.success("All messages marked as read");
+  };
+
+  const deleteSelected = () => {
+    const updated = filterMessageData.filter(
+      (msg) => !selectedMessages.includes(msg.id)
+    );
+    dispatch(setFilteredMessages(updated));
+    setSelectedMessages([]);
+    toast.success("Selected messages deleted");
   };
 
   const handleSelect = (id) => {
@@ -161,26 +65,31 @@ const Messages = () => {
     );
   };
 
-  const markAllAsRead = () => {
-    setMessages(messages.map((msg) => ({ ...msg, isRead: true })));
-    toast.success("All messages marked as read");
-  };
-
-  const deleteSelected = () => {
-    setMessages(messages.filter((msg) => !selectedMessages.includes(msg.id)));
-    setSelectedMessages([]);
-    toast.success("Selected messages deleted");
-  };
-
   const toggleExpand = (id) => {
-    setExpandedId(expandedId === id ? null : id);
+    setExpandedId((prev) => (prev === id ? null : id));
   };
 
-  const totalPages = Math.ceil(messages.length / messagesPerPage);
-  const paginatedMessages = messages.slice(
+  const totalPages = Math.ceil(filterMessageData.length / messagesPerPage);
+  const paginatedMessages = filterMessageData.slice(
     (currentPage - 1) * messagesPerPage,
     currentPage * messagesPerPage
   );
+
+  if (status === "loading") {
+    return (
+      <div className="min-h-screen bg-gray-100 py-10 px-4 text-center text-gray-600">
+        Loading messages...
+      </div>
+    );
+  }
+
+  if (status === "failed") {
+    return (
+      <div className="min-h-screen bg-gray-100 py-10 px-4 text-center text-red-600">
+        Error fetching messages: {error}
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
@@ -201,92 +110,104 @@ const Messages = () => {
         </div>
 
         <div className="space-y-4">
-          {paginatedMessages.map((msg) => (
-            <div
-              key={msg.id}
-              className={`bg-white shadow p-5 rounded-xl border-l-4 transition hover:shadow-md flex flex-col gap-3 ${
-                msg.isRead ? "border-green-400" : "border-blue-500"
-              }`}
-            >
-              <div className="flex items-start justify-between">
-                <div className="flex items-start gap-3">
-                  <input
-                    type="checkbox"
-                    checked={selectedMessages.includes(msg.id)}
-                    onChange={() => handleSelect(msg.id)}
-                    className="mt-1"
-                  />
-                  <FaUserCircle className="text-2xl text-blue-500 mt-1" />
-                  <div>
-                    <h3 className="text-base font-semibold text-gray-800">
-                      {msg.sender}
-                    </h3>
-                    <p className="text-sm text-gray-700 font-medium">
-                      {msg.subject}
-                    </p>
-                    {expandedId === msg.id && (
-                      <p className="text-sm text-gray-600 mt-1">
-                        {msg.content}
+          {paginatedMessages.length === 0 ? (
+            <p className="text-center text-gray-600">No messages to display.</p>
+          ) : (
+            paginatedMessages.map((msg) => (
+              <div
+                key={msg.id}
+                className={`bg-white shadow p-4 sm:p-5 rounded-xl border-l-4 transition hover:shadow-md flex flex-col gap-3 ${
+                  msg.isRead ? "border-green-400" : "border-blue-500"
+                }`}
+              >
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:items-start">
+                    <div className="flex gap-2 items-start">
+                      <input
+                        type="checkbox"
+                        checked={selectedMessages.includes(msg.id)}
+                        onChange={() => handleSelect(msg.id)}
+                        className="mt-1"
+                      />
+                      <FaUserCircle className="text-2xl text-blue-500 mt-1" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm sm:text-base font-semibold text-gray-800">
+                        {msg.sender}
+                      </h3>
+                      <p className="text-sm text-gray-700 font-medium">
+                        {msg.subject}
                       </p>
+                      {expandedId === msg.id && (
+                        <p className="text-sm text-gray-600 mt-1 break-words">
+                          {msg.content}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 items-start sm:items-center">
+                    <button
+                      onClick={() => toggleExpand(msg.id)}
+                      className="text-xs text-blue-600 underline"
+                    >
+                      {expandedId === msg.id ? "Collapse" : "Expand"}
+                    </button>
+
+                    {!msg.isRead ? (
+                      <button
+                        onClick={() => markAsRead(msg.id)}
+                        className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-3 py-1 rounded-md"
+                      >
+                        Mark as Read
+                      </button>
+                    ) : (
+                      <span className="flex items-center text-green-600 text-sm font-medium">
+                        <FaCheckCircle className="mr-1" /> Read
+                      </span>
                     )}
+
+                    <button className="text-blue-600 hover:text-blue-800">
+                      <FaReply />
+                    </button>
                   </div>
                 </div>
-                <div className="flex gap-2 mt-2 md:mt-0">
-                  <button
-                    onClick={() => toggleExpand(msg.id)}
-                    className="text-xs text-blue-600 underline"
-                  >
-                    {expandedId === msg.id ? "Collapse" : "Expand"}
-                  </button>
-                  {!msg.isRead ? (
-                    <button
-                      onClick={() => markAsRead(msg.id)}
-                      className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold px-3 py-1 rounded-md"
-                    >
-                      Mark as Read
-                    </button>
-                  ) : (
-                    <span className="flex items-center text-green-600 text-sm font-medium">
-                      <FaCheckCircle className="mr-1" /> Read
-                    </span>
-                  )}
-                  <button className="text-blue-600 hover:text-blue-800">
-                    <FaReply />
-                  </button>
-                </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
 
-        {/* Pagination */}
-        <div className="flex justify-center items-center gap-2 mt-6">
-          <button
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage((prev) => prev - 1)}
-            className="px-3 py-1 bg-gray-300 hover:bg-gray-400 rounded"
-          >
-            Prev
-          </button>
-          {[...Array(totalPages)].map((_, i) => (
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center gap-2 mt-6">
             <button
-              key={i}
-              onClick={() => setCurrentPage(i + 1)}
-              className={`px-3 py-1 rounded ${
-                currentPage === i + 1 ? "bg-blue-600 text-white" : "bg-gray-200"
-              }`}
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage((prev) => prev - 1)}
+              className="px-3 py-1 bg-gray-300 hover:bg-gray-400 rounded disabled:opacity-50"
             >
-              {i + 1}
+              Prev
             </button>
-          ))}
-          <button
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage((prev) => prev + 1)}
-            className="px-3 py-1 bg-gray-300 hover:bg-gray-400 rounded"
-          >
-            Next
-          </button>
-        </div>
+            {[...Array(totalPages)].map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentPage(i + 1)}
+                className={`px-3 py-1 rounded ${
+                  currentPage === i + 1
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 hover:bg-gray-300"
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage((prev) => prev + 1)}
+              className="px-3 py-1 bg-gray-300 hover:bg-gray-400 rounded disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
+        )}
 
         <p className="mt-6 text-center text-gray-500 text-sm">
           Stay updated with your instructors and admin team.

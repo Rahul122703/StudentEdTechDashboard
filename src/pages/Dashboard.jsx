@@ -4,10 +4,11 @@ import {
   UpcomingQuizCard,
   AttendenceStats,
   ParentDashboard,
+  Notification,
 } from "../components";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 import { NavLink } from "react-router-dom";
-
+import { fetchmessages } from "../redux/messages/messagesThunk";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCourses } from ".././redux/courses/coursesThunk";
 
@@ -62,6 +63,10 @@ const COLORS = ["#6366F1", "#E5E7EB"];
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchmessages());
+  }, [dispatch]);
+
   const { data: coursesData, status } = useSelector((state) => state.courses);
 
   useEffect(() => {
@@ -69,7 +74,6 @@ const Dashboard = () => {
       dispatch(fetchCourses());
     }
   }, [dispatch, status]);
-
   return (
     <div className="flex bg-gray-100 min-h-screen">
       <main className="flex-1 p-6 space-y-6">
@@ -141,7 +145,7 @@ const Dashboard = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="max-h-[30rem] md:col-span-2 space-y-4   overflow-y-auto rounded-xl flex flex-col border border-white  p-3 overflow-clip">
-            <div className="flex justify-between items-center sticky top-0 bg-white p-2 shadow-md rounded-lg">
+            <div className="flex justify-between items-center sticky top-[-12px] bg-white p-2 shadow-md rounded-lg">
               <h2 className="text-lg font-bold">Recent Courses</h2>
               <NavLink to="/courses">View all</NavLink>
             </div>

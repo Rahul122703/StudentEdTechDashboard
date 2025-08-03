@@ -24,7 +24,6 @@ const navItems = [
   { label: "Progress", icon: <FaChartLine />, route: "/progress" },
   { label: "Messages", icon: <FaEnvelope />, route: "/messages" },
   { label: "Settings", icon: <FaCog />, route: "/settings" },
-  // { label: "Logout", icon: <FaSignOutAlt />, route: "/logout" },
 ];
 
 const ToggleButton = ({ sidebarToggle }) => {
@@ -95,7 +94,7 @@ const SidebarDesktop = ({ sidebarToggle }) => (
 );
 
 const BottomNavMobile = () => (
-  <div className="rounded-tr-lg rounded-tl-lg fixed bottom-0 left-0 w-full h-[4rem] bg-blue-900 text-white flex justify-around items-center py-2 px-1 md:hidden z-50 border-t border-blue-700 overflow-auto">
+  <div className="rounded-tr-2xl rounded-tl-2xl fixed bottom-0 left-0 w-full h-[4rem] bg-blue-900 text-white flex justify-around items-center py-2 px-1 md:hidden z-50 border-t border-blue-700 overflow-auto">
     {navItems.map((item, index) => (
       <NavLink
         to={item.route}

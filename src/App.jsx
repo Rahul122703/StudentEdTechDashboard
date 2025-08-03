@@ -1,8 +1,9 @@
-import React from "react";
+import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-
-import { Sidebar, Topbar } from "./components";
+import { Sidebar, Topbar, Notification } from "./components";
 import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
+
 import {
   Courses,
   Dashboard,
@@ -14,6 +15,12 @@ import {
 } from "./pages";
 
 const App = () => {
+  const notify = () => {
+    toast.custom((t) => <Notification t={t} />);
+  };
+  useEffect(() => {
+    notify();
+  }, []);
   return (
     <div className="flex min-h-screen bg-blue-900 rounded-tl-2xl rounded-bl-2xl">
       <Sidebar />

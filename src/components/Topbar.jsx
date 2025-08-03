@@ -3,9 +3,14 @@ import { FaBell, FaUserCircle } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { NavLink } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+
 const Topbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  const { filterMessageData } = useSelector((state) => state.messages);
+  const messageCount = filterMessageData?.length || 0;
 
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -25,9 +30,11 @@ const Topbar = () => {
       <div className="flex items-center gap-4 relative">
         <NavLink to="/messages" className="relative">
           <FaBell size={20} />
-          <span className="absolute -top-1 -right-2 bg-red-500 text-xs px-1.5 py-0.5 rounded-full">
-            3
-          </span>
+          {messageCount > 0 && (
+            <span className="absolute -top-1 -right-2 bg-red-500 text-xs px-1.5 py-0.5 rounded-full">
+              {messageCount}
+            </span>
+          )}
         </NavLink>
 
         <div className="relative" ref={dropdownRef}>

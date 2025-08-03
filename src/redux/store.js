@@ -1,12 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import coursesReducer from "./courses/coursesSlice";
-import resumeReducer from "./resume/resumeSlice";
+import messageReducer from "./messages/messagesSlice";
 import themeReducer from "./theme/themeSlice";
-
 export const store = configureStore({
   reducer: {
     courses: coursesReducer,
-    resume: resumeReducer,
+    messages: messageReducer,
     theme: themeReducer,
   },
 });
