@@ -3,6 +3,7 @@
     {
       "id": 1,
       "title": "Web Development Fundamentals",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCMssiYfC-okTd6Z8X-8El4xLPJynDoNcOlA&s",
       "instructor": "Engr. Zaib Ul Nissa",
       "progress": 75,
       "lessons": 12,
@@ -14,6 +15,7 @@
     {
       "id": 2,
       "title": "Data Science Essentials",
+      "image": "https://www.mygreatlearning.com/blog/wp-content/uploads/2019/09/What-is-data-science-2.jpg",
       "instructor": "Engr. Faiz Nadeem Aalmani",
       "progress": 45,
       "lessons": 10,
@@ -25,6 +27,7 @@
     {
       "id": 3,
       "title": "UI/UX Design Principles",
+      "image": "https://blog.pwskills.com/wp-content/uploads/2025/01/4-UI_UX-Design-Courses-For-Free-On-YouTube.jpg",
       "instructor": "Engr. Kainat Memon",
       "progress": 60,
       "lessons": 8,
@@ -36,6 +39,7 @@
     {
       "id": 4,
       "title": "Machine Learning Fundamentals",
+      "image": "https://101blockchains.com/wp-content/uploads/2025/04/Machine_Learning_Fundamental.png",
       "instructor": "TBA",
       "progress": 0,
       "lessons": 0,
@@ -47,6 +51,7 @@
     {
       "id": 5,
       "title": "Advanced JavaScript",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjplyu-rILMIaKhSihUMbqrTTXseXvpJnJ_A&s",
       "instructor": "Engr. Ayesha Khan",
       "progress": 35,
       "lessons": 14,
@@ -58,6 +63,7 @@
     {
       "id": 6,
       "title": "Database Management Systems",
+      "image": "https://getsdeready.com/wp-content/uploads/2024/07/2.webp",
       "instructor": "Dr. Aslam Shaikh",
       "progress": 80,
       "lessons": 15,
@@ -69,6 +75,7 @@
     {
       "id": 7,
       "title": "React JS Mastery",
+      "image": "https://i.ytimg.com/vi/XxXyfkrP298/maxresdefault.jpg",
       "instructor": "Engr. Bilal Ahmed",
       "progress": 50,
       "lessons": 20,
@@ -80,6 +87,7 @@
     {
       "id": 8,
       "title": "Cloud Computing Basics",
+      "image": "https://30dayscoding.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2F3pv3o0yr6pgj%2F1fWaLZ89P7IaTSftLXoUr7%2F72eb9183413ea1f155565d313afebeb2%2FIMG-20240916-WA0371.jpg&w=1920&q=75",
       "instructor": "Engr. Sara Malik",
       "progress": 65,
       "lessons": 10,
@@ -91,6 +99,7 @@
     {
       "id": 9,
       "title": "Cyber Security 101",
+      "image": "https://i.ytimg.com/vi/nGs5Wnh4Xug/maxresdefault.jpg",
       "instructor": "Dr. Imran Qureshi",
       "progress": 20,
       "lessons": 6,
@@ -102,6 +111,7 @@
     {
       "id": 10,
       "title": "Python for Beginners",
+      "image": "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20210215160315/FREE-Python-Course-For-Beginners.png",
       "instructor": "Engr. Hina Rizvi",
       "progress": 90,
       "lessons": 18,

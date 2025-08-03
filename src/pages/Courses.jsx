@@ -44,7 +44,7 @@ const Courses = () => {
         </p>
 
         {/* Search bar and filters */}
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6 md:sticky fixed top-[4rem] md:top-0 left-6 right-4 w-[90%] bg-white p-3 rounded-xl z-10">
+        <div className=" shadow-xl flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6 md:sticky fixed top-[4rem] md:top-0 left-6 right-4 w-[90%] bg-white p-3 rounded-xl z-10">
           <input
             type="text"
             placeholder="Search courses..."

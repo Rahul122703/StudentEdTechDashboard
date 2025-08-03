@@ -4,7 +4,13 @@ const CourseCard = ({ course }) => {
   return (
     <div className="rounded-2xl shadow-lg overflow-hidden flex flex-col bg-white text-black">
       <div className={`h-32 flex items-center justify-center ${course.color}`}>
-        {course.icon}
+        <div className=" h-full w-full ">
+          <img
+            src={course.image}
+            alt="thumbnil"
+            className="h-full w-full object-cover"
+          />
+        </div>
       </div>
       <div className="p-4 flex-1 flex flex-col justify-between">
         <div>
