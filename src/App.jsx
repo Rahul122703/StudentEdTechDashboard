@@ -30,7 +30,7 @@ const App = () => {
         <main className="overflow-y-auto md:h-[42rem] rounded-2xl">
           <Toaster position="top-center" />
           <Routes>
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/" element={<Dashboard />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/resume-tool" element={<ResumeTool />} />
