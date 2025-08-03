@@ -41,39 +41,78 @@ Try it out here: https://student-ed-tech-dashboard.vercel.app
 
 ## Project Information
 
-This is a responsive student dashboard with the following features:
+This is a **responsive student dashboard** built with React and Tailwind CSS, offering a professional and dynamic interface for learners. Below are the key modules and features:
 
-1. **Home**
+---
 
-   - Contains an overall summary of the student's data (courses completed, progress, notifications, etc.)
+### 1. **Home**
 
-2. **My Courses**
+- Provides an **overall summary** of the student’s data such as:
+  - Courses completed
+  - Progress overview
+  - Notifications (with real-time updates via bell icon)
 
-   - View all enrolled courses
-   - Filter by status: All, Active, Enrolled, Technical
-   - Search by course title
+---
 
-3. **Resume Tool**
+### 2. **My Courses**
 
-   - Upload a PDF resume or paste text
-   - “Enhance Resume” button shows dummy suggestions
-   - Step-by-step progress indicator (Understanding → Analyzing → Recommending → Complete)
+- View all enrolled courses in a centralized and connected layout
+- **Dynamic category filters** – New categories added in the database will automatically render as buttons
+- Search functionality to find courses by title
+- Fully **responsive course cards** for desktop and mobile views
 
-4. **Progress**
+---
 
-   - Displays course progress cards
-   - Consistency heatmap similar to GitHub contribution graph
+### 3. **Resume Tool**
 
-5. **Messages**
+- Upload resume as **PDF or paste as text**
+- Click **“Enhance Resume”** to get sample suggestions
+- Visual progress bar showing: `Understanding → Analyzing → Recommending → Complete`
 
-   - View messages from Admin, Instructors, Support
-   - Mark as Read, Delete Selected, Collapse/Expand, Reply
-   - Pagination for long message lists
+---
 
-6. **Settings**
+### 4. **Progress**
 
-   - Toggle switches to adjust dashboard preferences
-   - Example toggles: Email Notifications, Assignment Reminders, Auto Save Progress, Show Grades Publicly
+- Displays course progress in card format
+- **Consistency heatmap** similar to GitHub’s contribution graph
 
-7. **Profile**
-   - Shows use information such as name,grade,skills.
+---
+
+### 5. **Messages**
+
+- Organized messaging from:
+  - Admin
+  - Instructors
+  - Support
+- Features:
+  - **Mark as Read**
+  - **Delete messages** (real-time reflection in the notification bell icon)
+  - **Pagination**, **Expand/Collapse**, **Reply**
+
+---
+
+### 6. **Settings**
+
+- Toggle switches to customize your dashboard preferences
+- Example toggles include:
+  - **Email Notifications**
+  - **Assignment Reminders**
+  - **Auto Save Progress**
+  - **Show Grades Publicly**
+
+---
+
+### 7. **Profile**
+
+- Displays student information including:
+  - Name
+  - Grade
+  - Skills
+
+---
+
+### 🔗 Additional Highlights
+
+- **Centralized data architecture** – All course-related data and UI are tightly coupled and synchronized
+- Notification system triggered **automatically on first page load**
+- Easily scalable and modular component structure
