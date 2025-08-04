@@ -27,7 +27,7 @@ const App = () => {
 
       <div className="flex flex-col flex-grow">
         <Topbar />
-        <main className="overflow-y-auto md:h-[42rem] rounded-2xl">
+        <main className="overflow-y-auto md:h-[90vh] rounded-2xl border border-none">
           <Toaster position="top-center" />
           <Routes>
             <Route path="/" element={<Dashboard />} />
